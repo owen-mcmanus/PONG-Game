@@ -12,6 +12,7 @@ public class T4ABlackboard extends PropertyChangeSupport {
     private float userPaddleY, opponentPaddleY = 0;
     private List<String> chats = new ArrayList<String>();
     private int fieldWidth, fieldHeight = 0;
+    private boolean inControl = false;
 
     private static T4ABlackboard instance;
 
@@ -36,6 +37,15 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public List<String> getChats(){return chats;}
     public float getFieldWidth(){return fieldWidth;}
     public float getFieldHeight(){return fieldHeight;}
+    public boolean getInControl(){return inControl;}
+
+    public void takeControl(){
+        inControl = true;
+    }
+    public void releaseControl(){
+        inControl = false;
+    }
+
 
     public void setBallPosition(float x, float y){
         ballX = x;
