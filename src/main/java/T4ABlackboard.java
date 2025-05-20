@@ -2,6 +2,11 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* Data storage for the PONG game
+* @author owen-mcmanus
+* @version 1
+ */
 public class T4ABlackboard extends PropertyChangeSupport {
     private float ballX, ballY = 0;
     private float userPaddleY, opponentPaddleY = 0;
