@@ -1,7 +1,8 @@
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class T4ABlackboard {
+public class T4ABlackboard extends PropertyChangeSupport {
     private float ballX, ballY = 0;
     private float userPaddleY, opponentPaddleY = 0;
     private List<String> chats = new ArrayList<String>();
@@ -9,12 +10,17 @@ public class T4ABlackboard {
 
     private static T4ABlackboard instance;
 
-    private static T4ABlackboard getInstance(){
+    public static T4ABlackboard getInstance(){
         if(instance == null){
             instance = new T4ABlackboard();
         }
         return instance;
     }
+
+    private T4ABlackboard(){
+        super(new Object());
+    }
+
 
     public float getBallX(){return ballX;}
     public float getBallY(){return ballY;}
