@@ -8,7 +8,7 @@ import java.util.List;
 * @version 1
  */
 public class T4ABlackboard extends PropertyChangeSupport {
-    private float ballX, ballY = 0;
+    private float ballX, ballY, ballDX, ballDY = 0;
     private float userPaddleY, opponentPaddleY = 0;
     private List<String> chats = new ArrayList<String>();
     private int fieldWidth, fieldHeight = 0;
@@ -29,6 +29,8 @@ public class T4ABlackboard extends PropertyChangeSupport {
 
     public float getBallX(){return ballX;}
     public float getBallY(){return ballY;}
+    public float getBallDX(){return ballDX;}
+    public float getBallDY(){return ballDY;}
     public float getUserPaddleY(){return userPaddleY;}
     public float getOpponentPaddleY(){return opponentPaddleY;}
     public List<String> getChats(){return chats;}
@@ -38,6 +40,11 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public void setBallPosition(float x, float y){
         ballX = x;
         ballY = y;
+    }
+
+    public void setBallVelocity(float dx, float dy){
+        ballDX = dx;
+        ballDY = dy;
     }
 
     public void setUserPaddlePosition(float y){
