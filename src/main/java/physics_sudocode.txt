@@ -1,0 +1,18 @@
+author owen-mcmanus
+
+Update() should be called in a loop in Main
+
+Update(){
+    if(inControl()){
+        setBallPosition(getBallDX()+getBallX(), getBallDY()+getBallY());
+
+        if(getBallY() < 0) // hit
+        if(getBallY() > getScreenHeight()) // hit
+
+        if(getBallX() < userPaddleX){
+            if(getBallY() > userPaddleY && getBallY() < userPaddleY + paddleHeight){
+
+            }
+        }
+    }
+}
