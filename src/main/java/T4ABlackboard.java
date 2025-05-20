@@ -37,7 +37,7 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public List<String> getChats(){return chats;}
     public float getFieldWidth(){return fieldWidth;}
     public float getFieldHeight(){return fieldHeight;}
-    public boolean getInControl(){return inControl;}
+    public boolean getInControl(){return inControl;} // receiving or hitting the ball
 
     public void takeControl(){
         inControl = true;
