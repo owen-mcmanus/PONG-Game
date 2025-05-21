@@ -13,9 +13,11 @@ public class Main extends JFrame {
 
     public static void main(String[] args){
         Main game = new Main();
-        game.setVisible(true);
-
         T4AField field = new T4AField();
+        T4AChat chatArea = new T4AChat();
+        game.add(field, BorderLayout.CENTER);
+        game.add(chatArea, BorderLayout.EAST);
+        game.setVisible(true);
 
     }
 }

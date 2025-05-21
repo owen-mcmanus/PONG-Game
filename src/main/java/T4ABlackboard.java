@@ -63,14 +63,24 @@ public class T4ABlackboard extends PropertyChangeSupport {
         opponentPaddleY = y;
     }
 
-    public void addChat(String message){
-        chats.add(message);
+    public void addChat(String sender, String message){
+        String msgFormat = sender + ": " + message;
+        chats.add(msgFormat);
+        firePropertyChange("chatSent", null, msgFormat);
     }
     public void setFieldDimensions(int width, int height){
         fieldWidth = width;
         fieldHeight = height;
     }
 
-    public void incrementOpponentScore() {opponentScore++;}
-    public void incrementUserScore() {userScore++;}
+    public void incrementOpponentScore() {
+        int oldScore = this.opponentScore;
+        opponentScore++;
+        firePropertyChange("opponentScore", oldScore, opponentScore);
+    }
+    public void incrementUserScore() {
+        int oldScore = this.userScore;
+        userScore++;
+        firePropertyChange("userScore", oldScore, userScore);
+    }
 }
