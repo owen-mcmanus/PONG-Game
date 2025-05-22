@@ -103,4 +103,9 @@ public class T4AField extends JPanel implements PropertyChangeListener {
             }
         });
     }
+
+    @Override
+    public Dimension getPreferredSize(){
+        return new Dimension(T4ABlackboard.getInstance().FIELD_WIDTH, T4ABlackboard.getInstance().FIELD_HEIGHT);
+    }
 }

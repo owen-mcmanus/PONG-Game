@@ -2,6 +2,7 @@ import org.eclipse.paho.client.mqttv3.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -16,6 +17,8 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
     private final static String TOPIC_PADDLE = "CSC307-T4A-PONG-PADDLE";
     private final static String TOPIC_COLLISION = "CSC307-T4A-PONG-COLLISION";
     private final static String TOPIC_SCORE = "CSC307-T4A-PONG-SCORE";
+
+    private final  static String TOPIC_CHAT = "CSC307-T4A-PONG-CHAT";
     private String clientID;
     private MqttClient client;
 
@@ -30,6 +33,7 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
             client.subscribe(TOPIC_PADDLE + "/#");
             client.subscribe(TOPIC_COLLISION + "/#");
             client.subscribe(TOPIC_SCORE + "/#");
+            client.subscribe(TOPIC_CHAT + "/#");
             System.out.println("Connected to BROKER: " + BROKER);
         } catch (MqttException e) {
             e.printStackTrace();
@@ -59,6 +63,11 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
             Thread t = new Thread(new PublishScore());
             t.start();
         }
+        if(Objects.equals(propertyChangeEvent.getPropertyName(), "chatSent")){
+            Thread t = new Thread(new PublishChat());
+            t.start();
+        }
+
     }
 
     class PublishBallPosition implements Runnable {
@@ -143,6 +152,24 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
         }
     }
 
+    class PublishChat implements Runnable {
+        @Override
+        public void run() {
+            try {
+                T4ABlackboard repository = T4ABlackboard.getInstance();
+                String content = String.join("/n", repository.getChats());
+
+                MqttMessage mqttMessage = new MqttMessage(content.getBytes());
+                mqttMessage.setQos(2);
+                if (client.isConnected()) {
+                    client.publish(TOPIC_CHAT + "/" + clientID, mqttMessage);
+                }
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void connectionLost(Throwable throwable) {
         System.out.println("Connection lost: " + throwable.getMessage());
@@ -181,6 +208,12 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
 
         if(topic.startsWith(TOPIC_SCORE)){
             blackboard.setUserScore(Integer.parseInt(new String(mqttMessage.getPayload())));
+        }
+
+        if(topic.startsWith(TOPIC_CHAT)){
+            String chatMessage = new String(mqttMessage.getPayload());
+            blackboard.addChat(clientID, chatMessage);
+            blackboard.receiveChatMessage(chatMessage);
         }
     }
 

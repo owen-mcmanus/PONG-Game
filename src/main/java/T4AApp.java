@@ -7,7 +7,7 @@ public class T4AApp extends JFrame {
 
     public T4AApp(String clientId){
         setTitle("Pong Game");
-        setSize( 1000,800);
+        //setSize( 1000,800);
         setLayout(new BorderLayout());
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,6 +18,9 @@ public class T4AApp extends JFrame {
 
         add(field, BorderLayout.CENTER);
         add(chatArea, BorderLayout.SOUTH);
+
+        pack();
+        setLocationRelativeTo(null);
         setVisible(true);
 
         T4ABlackboard.getInstance().addPropertyChangeListener(pubSub);

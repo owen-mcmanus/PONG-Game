@@ -103,7 +103,7 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public void addChat(String sender, String message){
         String msgFormat = sender + ": " + message;
         chats.add(msgFormat);
-        firePropertyChange("chatSent", null, msgFormat);
+        firePropertyChange("chatHist", null, msgFormat);
     }
 
     public void incrementOpponentScore() {
@@ -130,5 +130,14 @@ public class T4ABlackboard extends PropertyChangeSupport {
 
     public int getOpponentPaddleX() {
         return FIELD_WIDTH - PADDLE_X_OFFSET - PADDLE_WIDTH;
+    }
+
+    public void sendChatMessage(String message) {
+        chats.add(message);
+        firePropertyChange("chatSent", null, message);
+    }
+    public void receiveChatMessage(String message) {
+        chats.add(message);
+        firePropertyChange("chatSent",null,message);
     }
 }
