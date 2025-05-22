@@ -55,7 +55,7 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
             Thread t = new Thread(new PublishCollision());
             t.start();
         }
-        if(Objects.equals(propertyChangeEvent.getPropertyName(), "userScore")){
+        if(Objects.equals(propertyChangeEvent.getPropertyName(), "opponentScore")){
             Thread t = new Thread(new PublishScore());
             t.start();
         }
@@ -127,7 +127,7 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
         public void run() {
             try {
                 T4ABlackboard repository = T4ABlackboard.getInstance();
-                String content = Integer.toString(repository.getUserScore());
+                String content = Integer.toString(repository.getOpponentScore());
 
                 MqttMessage message = new MqttMessage(content.getBytes());
                 message.setQos(2);
@@ -176,11 +176,11 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
         }
 
         if(topic.startsWith(TOPIC_PADDLE)){
-            blackboard.setOpponentPaddlePosition(blackboard.FIELD_HEIGHT - Integer.parseInt(new String(mqttMessage.getPayload())));
+            blackboard.setOpponentPaddlePosition(blackboard.FIELD_HEIGHT - blackboard.PADDLE_HEIGHT - Integer.parseInt(new String(mqttMessage.getPayload())));
         }
 
         if(topic.startsWith(TOPIC_SCORE)){
-            blackboard.setOpponentScore(Integer.parseInt(new String(mqttMessage.getPayload())));
+            blackboard.setUserScore(Integer.parseInt(new String(mqttMessage.getPayload())));
         }
     }
 

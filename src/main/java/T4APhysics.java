@@ -21,7 +21,7 @@ public class T4APhysics {
             bb.incrementOpponentScore();
             bb.setBallStarting();
         } else if (bb.getBallX() >= bb.FIELD_WIDTH){
-            bb.incrementUserScore();
+//            bb.incrementUserScore();
             bb.setBallStarting();
         }
     }

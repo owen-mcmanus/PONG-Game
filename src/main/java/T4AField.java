@@ -32,9 +32,9 @@ public class T4AField extends JPanel implements PropertyChangeListener {
         T4ABlackboard blackBoard = T4ABlackboard.getInstance();
         blackBoard.addPropertyChangeListener(this);
 
-        userScore = new JLabel("Score: " + blackBoard.getUserScore());
+        userScore = new JLabel("Your Score: " + blackBoard.getUserScore());
         userScore.setFont(new Font("Arial", Font.BOLD, 22));
-        opponentScore= new JLabel("Score: "+ blackBoard.getOpponentScore());
+        opponentScore= new JLabel("Opponent Score: "+ blackBoard.getOpponentScore());
         opponentScore.setFont(new Font("Arial", Font.BOLD, 22));
 
 
@@ -50,10 +50,10 @@ public class T4AField extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         switch(evt.getPropertyName()){
             case "userScore":
-                userScore.setText("Score: " + evt.getNewValue());
+                userScore.setText("Your Score: " + evt.getNewValue());
                 break;
             case "opponentScore":
-                opponentScore.setText("Score: " + evt.getNewValue());
+                opponentScore.setText("Opponent Score: " + evt.getNewValue());
                 break;
         }
     }

@@ -21,7 +21,6 @@ public class T4AApp extends JFrame {
         setVisible(true);
 
         T4ABlackboard.getInstance().addPropertyChangeListener(pubSub);
-
         Timer timer = new Timer(1000 / T4ABlackboard.FPS, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

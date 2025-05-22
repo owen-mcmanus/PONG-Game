@@ -112,10 +112,10 @@ public class T4ABlackboard extends PropertyChangeSupport {
         firePropertyChange("opponentScore", oldScore, opponentScore);
     }
 
-    public void setOpponentScore(int score){
-        int oldScore = this.opponentScore;
-        opponentScore = score;
-        firePropertyChange("opponentScore", oldScore, opponentScore);
+    public void setUserScore(int score){
+        int oldScore = this.userScore;
+        userScore = score;
+        firePropertyChange("userScore", oldScore, userScore);
     }
 
     public void incrementUserScore() {
