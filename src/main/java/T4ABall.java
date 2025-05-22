@@ -1,11 +1,6 @@
 import java.awt.*;
 
 public class T4ABall implements T4AComponent {
-
-    @Override
-    public void update() {
-    }
-
     @Override
     public void draw(Graphics g) {
         T4ABlackboard bb = T4ABlackboard.getInstance();

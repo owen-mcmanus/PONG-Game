@@ -13,10 +13,6 @@ public class T4APaddle implements T4AComponent
     }
 
     @Override
-    public void update() {
-    }
-
-    @Override
     public void draw(Graphics g) {
         T4ABlackboard bb = T4ABlackboard.getInstance();
         int y = isUser ? bb.getUserPaddleY() : bb.getOpponentPaddleY();
