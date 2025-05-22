@@ -41,7 +41,7 @@ public class T4AField extends JPanel implements PropertyChangeListener {
         add(userScore, BorderLayout.NORTH);
         add(opponentScore,BorderLayout.SOUTH);
 
-        this.ball = new T4AABall();
+        this.ball = new T4ABall();
 
         setFocusable(true);
     }
