@@ -1,12 +1,12 @@
 import java.awt.*;
 
-public class T4Paddle implements T4Component
+public class T4APaddle implements T4AComponent
 {
 
     private final boolean isUser;
     private final int x;
 
-    public T4Paddle(boolean isUser) {
+    public T4APaddle(boolean isUser) {
         T4ABlackboard bb = T4ABlackboard.getInstance();
         this.isUser = isUser;
         this.x = isUser ? bb.getUserPaddleX() : bb.getOpponentPaddleX(); // setting x based on user or not

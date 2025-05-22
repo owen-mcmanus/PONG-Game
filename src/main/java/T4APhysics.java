@@ -1,10 +1,10 @@
-public class T4Physics {
+public class T4APhysics {
     private final T4ABlackboard bb;
     private boolean moveUp = false;
     private boolean moveDown = false;
 
 
-    public T4Physics() {
+    public T4APhysics() {
         this.bb = T4ABlackboard.getInstance();
     }
 
@@ -39,29 +39,32 @@ public class T4Physics {
     }
 
     private void handlePaddleCollision() {
-        int ballX = bb.getBallX();
-        int ballY = bb.getBallY();
+        if(bb.getInControl()){
+            int ballX = bb.getBallX();
+            int ballY = bb.getBallY();
 
-        // user paddle
-        int paddleX = bb.getUserPaddleX();
-        int paddleY = bb.getUserPaddleY();
+            // user paddle
+            int paddleX = bb.getUserPaddleX();
+            int paddleY = bb.getUserPaddleY();
 
-        if (ballX <= paddleX + bb.PADDLE_WIDTH &&
-                ballX >= paddleX &&
-                ballY + bb.BALL_DIAMETER >= paddleY &&
-                ballY <= paddleY + bb.PADDLE_HEIGHT) {
-            bb.setBallDX(Math.abs(bb.getBallDX())); // bounce to the right
-        }
+            if (ballX <= paddleX + bb.PADDLE_WIDTH &&
+                    ballX >= paddleX &&
+                    ballY + bb.BALL_DIAMETER >= paddleY &&
+                    ballY <= paddleY + bb.PADDLE_HEIGHT) {
+                bb.setBallDX(Math.abs(bb.getBallDX())); // bounce to the right
+                bb.releaseControl();
+            }
 
-        // opponent paddle
-        paddleX = bb.getOpponentPaddleX();
-        paddleY = bb.getOpponentPaddleY();
+            // opponent paddle
+            paddleX = bb.getOpponentPaddleX();
+            paddleY = bb.getOpponentPaddleY();
 
-        if (ballX + bb.BALL_DIAMETER >= paddleX &&
-                ballX <= paddleX + bb.PADDLE_WIDTH &&
-                ballY + bb.BALL_DIAMETER >= paddleY &&
-                ballY <= paddleY + bb.PADDLE_HEIGHT) {
-            bb.setBallDX(-Math.abs(bb.getBallDX())); // bounce to the left
+            if (ballX + bb.BALL_DIAMETER >= paddleX &&
+                    ballX <= paddleX + bb.PADDLE_WIDTH &&
+                    ballY + bb.BALL_DIAMETER >= paddleY &&
+                    ballY <= paddleY + bb.PADDLE_HEIGHT) {
+                bb.setBallDX(-Math.abs(bb.getBallDX())); // bounce to the left
+            }
         }
     }
 

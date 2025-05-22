@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class T4Ball implements T4Component{
+public class T4AABall implements T4AComponent {
 
     @Override
     public void update() {

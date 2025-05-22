@@ -8,7 +8,7 @@ import java.util.List;
 * @version 1
  */
 public class T4ABlackboard extends PropertyChangeSupport {
-    private int ballDX = 10;
+    private int ballDX = -10;
     private int ballDY = 10;
     private List<String> chats = new ArrayList<String>();
     private boolean inControl = false;
@@ -21,6 +21,8 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public final int FIELD_WIDTH = 1000;
     public final int FIELD_HEIGHT = 500;
     public final int PADDLE_SPEED = 5;
+
+    public static final int FPS = 30;
 
     private int ballX = FIELD_WIDTH / 2;
     private int ballY = FIELD_HEIGHT / 2;
@@ -53,7 +55,10 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public int getOpponentScore(){return opponentScore;}
 
     public void takeControl(){inControl = true;}
-    public void releaseControl(){inControl = false;}
+    public void releaseControl(){
+        inControl = false;
+        firePropertyChange("collision", null, false);
+    }
 
 
     public void setBallPosition(int x, int y){
@@ -89,6 +94,7 @@ public class T4ABlackboard extends PropertyChangeSupport {
 
     public void setUserPaddlePosition(int y){
         userPaddleY = y;
+        firePropertyChange("paddle", null, y);
     }
     public void setOpponentPaddlePosition(int y){
         opponentPaddleY = y;
@@ -105,6 +111,13 @@ public class T4ABlackboard extends PropertyChangeSupport {
         opponentScore++;
         firePropertyChange("opponentScore", oldScore, opponentScore);
     }
+
+    public void setOpponentScore(int score){
+        int oldScore = this.opponentScore;
+        opponentScore = score;
+        firePropertyChange("opponentScore", oldScore, opponentScore);
+    }
+
     public void incrementUserScore() {
         int oldScore = this.userScore;
         userScore++;
@@ -116,6 +129,6 @@ public class T4ABlackboard extends PropertyChangeSupport {
     }
 
     public int getOpponentPaddleX() {
-        return FIELD_WIDTH - PADDLE_X_OFFSET;
+        return FIELD_WIDTH - PADDLE_X_OFFSET - PADDLE_WIDTH;
     }
 }

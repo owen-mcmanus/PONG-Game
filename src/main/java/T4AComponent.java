@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public interface T4Component {
+public interface T4AComponent {
     void update();
     void draw(Graphics g);
 }

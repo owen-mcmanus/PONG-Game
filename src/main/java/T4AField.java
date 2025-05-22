@@ -19,10 +19,10 @@ import java.beans.PropertyChangeListener;
 public class T4AField extends JPanel implements PropertyChangeListener {
     private JLabel userScore;
     private JLabel opponentScore;
-    private final T4Component ball;
-    private final T4Paddle userPaddle = new T4Paddle(true);
-    private final T4Paddle opponentPaddle = new T4Paddle(false);
-    private final T4Physics physics = new T4Physics();
+    private final T4AComponent ball;
+    private final T4APaddle userPaddle = new T4APaddle(true);
+    private final T4APaddle opponentPaddle = new T4APaddle(false);
+    private final T4APhysics physics = new T4APhysics();
 
     public T4AField(){
         setBackground(new Color(178, 255,100));
@@ -41,10 +41,11 @@ public class T4AField extends JPanel implements PropertyChangeListener {
         add(userScore, BorderLayout.NORTH);
         add(opponentScore,BorderLayout.SOUTH);
 
-        this.ball = new T4Ball();
+        this.ball = new T4AABall();
 
-
+        setFocusable(true);
     }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch(evt.getPropertyName()){
@@ -64,6 +65,7 @@ public class T4AField extends JPanel implements PropertyChangeListener {
         ball.draw(g);
         userPaddle.draw(g);
         opponentPaddle.draw(g);
+        Toolkit.getDefaultToolkit().sync();
     }
 
     public void updateGame() {
