@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main extends JFrame {
 
@@ -18,6 +20,15 @@ public class Main extends JFrame {
         game.add(field, BorderLayout.CENTER);
         game.add(chatArea, BorderLayout.EAST);
         game.setVisible(true);
+
+        Timer timer = new Timer(16, new ActionListener() { // ~60 FPS
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                field.updateGame();
+                field.repaint();
+            }
+        });
+        timer.start();
 
     }
 }

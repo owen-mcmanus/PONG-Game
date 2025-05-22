@@ -8,7 +8,8 @@ import java.util.List;
 * @version 1
  */
 public class T4ABlackboard extends PropertyChangeSupport {
-    private int ballX, ballY, ballDX, ballDY = 0;
+    private int ballDX = 1;
+    private int ballDY = 1;
     private int userPaddleY, opponentPaddleY = 0;
     private List<String> chats = new ArrayList<String>();
     private boolean inControl = false;
@@ -20,6 +21,9 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public final int PADDLE_X_OFFSET = 10;
     public final int FIELD_WIDTH = 1000;
     public final int FIELD_HEIGHT = 500;
+
+    private int ballX = FIELD_WIDTH / 2;
+    private int ballY = FIELD_HEIGHT / 2;
 
 
     private static T4ABlackboard instance;
@@ -56,6 +60,21 @@ public class T4ABlackboard extends PropertyChangeSupport {
         ballY = y;
     }
 
+    public void setBallX(int x){
+        ballX = x;
+    }
+
+    public void setBallY(int y){
+        ballY = y;
+    }
+
+    public void setBallDX(int dx){
+        ballDX = dx;
+    }
+
+    public void setBallDY(int dy){
+        ballDY = dy;
+    }
     public void setBallVelocity(int dx, int dy){
         ballDX = dx;
         ballDY = dy;
