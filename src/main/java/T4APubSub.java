@@ -5,7 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.util.Objects;
 
 /**
- * MQTT
+ * MQTT publisher and subscriber
  *
  * @version 1
  * @author  owen-mcmanus
