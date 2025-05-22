@@ -39,7 +39,7 @@ public class T4APhysics {
     }
 
     private void handlePaddleCollision() {
-        if(bb.getInControl()){
+//        if(bb.getInControl()){
             int ballX = bb.getBallX();
             int ballY = bb.getBallY();
 
@@ -65,7 +65,7 @@ public class T4APhysics {
                     ballY <= paddleY + bb.PADDLE_HEIGHT) {
                 bb.setBallDX(-Math.abs(bb.getBallDX())); // bounce to the left
             }
-        }
+//        }
     }
 
     public void setMoveUp(boolean move) { this.moveUp = move; }

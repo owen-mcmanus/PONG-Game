@@ -26,7 +26,7 @@ public class T4ABlackboard extends PropertyChangeSupport {
 
     private int ballX = FIELD_WIDTH / 2;
     private int ballY = FIELD_HEIGHT / 2;
-    private int userPaddleY = FIELD_WIDTH / 2;
+    private int userPaddleY = FIELD_HEIGHT / 2;
     private int opponentPaddleY = FIELD_HEIGHT / 2;
 
     private static T4ABlackboard instance;
