@@ -10,7 +10,6 @@ import java.util.List;
 public class T4ABlackboard extends PropertyChangeSupport {
     private int ballDX = 1;
     private int ballDY = 1;
-    private int userPaddleY, opponentPaddleY = 0;
     private List<String> chats = new ArrayList<String>();
     private boolean inControl = false;
     private int userScore, opponentScore = 0;
@@ -21,10 +20,12 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public final int PADDLE_X_OFFSET = 10;
     public final int FIELD_WIDTH = 1000;
     public final int FIELD_HEIGHT = 500;
+    public final int PADDLE_SPEED = 5;
 
     private int ballX = FIELD_WIDTH / 2;
     private int ballY = FIELD_HEIGHT / 2;
-
+    private int userPaddleY = FIELD_WIDTH / 2;
+    private int opponentPaddleY = FIELD_HEIGHT / 2;
 
     private static T4ABlackboard instance;
 
@@ -102,5 +103,13 @@ public class T4ABlackboard extends PropertyChangeSupport {
         int oldScore = this.userScore;
         userScore++;
         firePropertyChange("userScore", oldScore, userScore);
+    }
+
+    public int getUserPaddleX() {
+        return PADDLE_X_OFFSET;
+    }
+
+    public int getOpponentPaddleX() {
+        return FIELD_WIDTH - PADDLE_X_OFFSET;
     }
 }
