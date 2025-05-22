@@ -16,8 +16,13 @@ public class T4Physics {
             bb.setBallDY(-bb.getBallDY());
         }
 
-        if (bb.getBallX() <= 0 || bb.getBallX() >= bb.FIELD_WIDTH) {
-            bb.setBallDX(-bb.getBallDX());
+        // if there is a scores
+        if (bb.getBallX() <= 0) {
+            bb.incrementOpponentScore();
+            bb.setBallStarting();
+        } else if (bb.getBallX() >= bb.FIELD_WIDTH){
+            bb.incrementUserScore();
+            bb.setBallStarting();
         }
     }
 
