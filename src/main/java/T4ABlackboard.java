@@ -8,12 +8,19 @@ import java.util.List;
 * @version 1
  */
 public class T4ABlackboard extends PropertyChangeSupport {
-    private float ballX, ballY, ballDX, ballDY = 0;
-    private float userPaddleY, opponentPaddleY = 0;
+    private int ballX, ballY, ballDX, ballDY = 0;
+    private int userPaddleY, opponentPaddleY = 0;
     private List<String> chats = new ArrayList<String>();
-    private int fieldWidth, fieldHeight = 0;
     private boolean inControl = false;
     private int userScore, opponentScore = 0;
+
+    public final int BALL_DIAMETER = 10;
+    public final int PADDLE_WIDTH = 10;
+    public final int PADDLE_HEIGHT = 40;
+    public final int PADDLE_X_OFFSET = 10;
+    public final int FIELD_WIDTH = 1000;
+    public final int FIELD_HEIGHT = 500;
+
 
     private static T4ABlackboard instance;
 
@@ -29,15 +36,13 @@ public class T4ABlackboard extends PropertyChangeSupport {
     }
 
 
-    public float getBallX(){return ballX;}
-    public float getBallY(){return ballY;}
-    public float getBallDX(){return ballDX;}
-    public float getBallDY(){return ballDY;}
-    public float getUserPaddleY(){return userPaddleY;}
-    public float getOpponentPaddleY(){return opponentPaddleY;}
+    public int getBallX(){return ballX;}
+    public int getBallY(){return ballY;}
+    public int getBallDX(){return ballDX;}
+    public int getBallDY(){return ballDY;}
+    public int getUserPaddleY(){return userPaddleY;}
+    public int getOpponentPaddleY(){return opponentPaddleY;}
     public List<String> getChats(){return chats;}
-    public float getFieldWidth(){return fieldWidth;}
-    public float getFieldHeight(){return fieldHeight;}
     public boolean getInControl(){return inControl;}
     public int getUserScore(){return userScore;}
     public int getOpponentScore(){return opponentScore;}
@@ -46,20 +51,20 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public void releaseControl(){inControl = false;}
 
 
-    public void setBallPosition(float x, float y){
+    public void setBallPosition(int x, int y){
         ballX = x;
         ballY = y;
     }
 
-    public void setBallVelocity(float dx, float dy){
+    public void setBallVelocity(int dx, int dy){
         ballDX = dx;
         ballDY = dy;
     }
 
-    public void setUserPaddlePosition(float y){
+    public void setUserPaddlePosition(int y){
         userPaddleY = y;
     }
-    public void setOpponentPaddlePosition(float y){
+    public void setOpponentPaddlePosition(int y){
         opponentPaddleY = y;
     }
 
@@ -67,10 +72,6 @@ public class T4ABlackboard extends PropertyChangeSupport {
         String msgFormat = sender + ": " + message;
         chats.add(msgFormat);
         firePropertyChange("chatSent", null, msgFormat);
-    }
-    public void setFieldDimensions(int width, int height){
-        fieldWidth = width;
-        fieldHeight = height;
     }
 
     public void incrementOpponentScore() {
