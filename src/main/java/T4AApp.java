@@ -3,6 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The T4App sets up main app  window for Pong game.
+ * Sets up frame, field, and chat
+ *
+ * @author Uriel Hernandez
+ * @version 1
+ *
+ */
 public class T4AApp extends JFrame {
 
     public T4AApp(String clientId){

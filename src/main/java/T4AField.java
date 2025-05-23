@@ -12,7 +12,7 @@ import java.beans.PropertyChangeListener;
     * Listens for score changes and updates
     *
     *
-    * @author Uriel
+    * @author Uriel Hernandez
     * @version 1
  */
 
