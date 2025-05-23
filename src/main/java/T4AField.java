@@ -62,9 +62,28 @@ public class T4AField extends JPanel implements PropertyChangeListener {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(Color.RED);
+
         ball.draw(g);
         userPaddle.draw(g);
         opponentPaddle.draw(g);
+
+        T4ABlackboard bb = T4ABlackboard.getInstance();
+        if(bb.getUserScore() >= 9){
+            T4AComposite dots = new T4ADots();
+            T4AComposite squares = new T4ASquares();
+            squares.addComponent(new T4ACelebrationText());
+            dots.addComponent(squares);
+            dots.draw(g);
+
+        }else if(bb.getUserScore() >= 6){
+            T4AComposite dots = new T4ADots();
+            dots.addComponent(new T4ASquares());
+            dots.draw(g);
+        }else if(bb.getUserScore() >= 3){
+            T4AComposite dots = new T4ADots();
+            dots.draw(g);
+        }
+
         Toolkit.getDefaultToolkit().sync();
     }
 

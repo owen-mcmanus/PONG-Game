@@ -1,3 +1,12 @@
+/**
+ * This class is used to draw the Paddles,
+ * and determine if the Paddle is the user's or the opponents'
+ *
+ * @author Michael Man
+ * @version 1
+ *
+ */
+
 import java.awt.*;
 
 public class T4APaddle implements T4AComponent
@@ -10,10 +19,6 @@ public class T4APaddle implements T4AComponent
         T4ABlackboard bb = T4ABlackboard.getInstance();
         this.isUser = isUser;
         this.x = isUser ? bb.getUserPaddleX() : bb.getOpponentPaddleX(); // setting x based on user or not
-    }
-
-    @Override
-    public void update() {
     }
 
     @Override

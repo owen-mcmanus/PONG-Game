@@ -1,3 +1,12 @@
+/**
+ * This class is used for the interaction and collision between the ball, paddle and walls
+ * it is also responsible for updating the score, ball is reseted after each score
+ *
+ * @author Michael Man
+ * @version 1
+ *
+ */
+
 public class T4APhysics {
     private final T4ABlackboard bb;
     private boolean moveUp = false;
@@ -39,7 +48,6 @@ public class T4APhysics {
     }
 
     private void handlePaddleCollision() {
-//        if(bb.getInControl()){
             int ballX = bb.getBallX();
             int ballY = bb.getBallY();
 
@@ -65,7 +73,6 @@ public class T4APhysics {
                     ballY <= paddleY + bb.PADDLE_HEIGHT) {
                 bb.setBallDX(-Math.abs(bb.getBallDX())); // bounce to the left
             }
-//        }
     }
 
     public void setMoveUp(boolean move) { this.moveUp = move; }
