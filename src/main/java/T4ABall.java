@@ -1,3 +1,11 @@
+/**
+ * This class is used to draw the ball
+ *
+ * @author Michael Man
+ * @version 1
+ *
+ */
+
 import java.awt.*;
 
 public class T4ABall implements T4AComponent {

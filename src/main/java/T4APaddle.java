@@ -1,3 +1,12 @@
+/**
+ * This class is used to draw the Paddles,
+ * and determine if the Paddle is the user's or the opponents'
+ *
+ * @author Michael Man
+ * @version 1
+ *
+ */
+
 import java.awt.*;
 
 public class T4APaddle implements T4AComponent
