@@ -9,6 +9,7 @@ import java.awt.*;
 public class T4ACelebrationText extends T4AComposite{
     @Override
     public void draw(Graphics g){
+        g.setColor(Color.BLUE);
         g.drawString("Good Job!", 50, 50);
 
         super.draw(g);

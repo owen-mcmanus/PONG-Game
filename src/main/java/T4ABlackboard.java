@@ -8,11 +8,7 @@ import java.util.List;
 * @version 1
  */
 public class T4ABlackboard extends PropertyChangeSupport {
-    private int ballDX = -10;
-    private int ballDY = 10;
-    private List<String> chats = new ArrayList<String>();
-    private boolean inControl = false;
-    private int userScore, opponentScore = 0;
+    public static final int FPS = 30;
 
     public final int BALL_DIAMETER = 10;
     public final int PADDLE_WIDTH = 10;
@@ -22,26 +18,27 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public final int FIELD_HEIGHT = 500;
     public final int PADDLE_SPEED = 5;
 
-    public static final int FPS = 30;
-
     private int ballX = FIELD_WIDTH / 2;
     private int ballY = FIELD_HEIGHT / 2;
     private int userPaddleY = FIELD_HEIGHT / 2;
     private int opponentPaddleY = FIELD_HEIGHT / 2;
+    private int ballDX = -10;
+    private int ballDY = 10;
+    private List<String> chats = new ArrayList<String>();
+    private boolean inControl = false;
+    private int userScore, opponentScore = 0;
 
     private static T4ABlackboard instance;
-
-    public static T4ABlackboard getInstance(){
-        if(instance == null){
-            instance = new T4ABlackboard();
-        }
-        return instance;
-    }
 
     private T4ABlackboard(){
         super(new Object());
     }
 
+    public static T4ABlackboard getInstance(){
+        if(instance == null)
+            instance = new T4ABlackboard();
+        return instance;
+    }
 
     public int getBallX(){return ballX;}
     public int getBallY(){return ballY;}
@@ -66,23 +63,11 @@ public class T4ABlackboard extends PropertyChangeSupport {
         ballY = y;
     }
 
-    public void setBallX(int x){
-        ballX = x;
-    }
-
-    public void setBallY(int y){
-        ballY = y;
-    }
-
     public void setBallDX(int dx){
         ballDX = dx;
     }
 
     public void setBallDY(int dy){
-        ballDY = dy;
-    }
-    public void setBallVelocity(int dx, int dy){
-        ballDX = dx;
         ballDY = dy;
     }
 
@@ -91,19 +76,13 @@ public class T4ABlackboard extends PropertyChangeSupport {
         ballY = FIELD_HEIGHT / 2;
     }
 
-
     public void setUserPaddlePosition(int y){
         userPaddleY = y;
         firePropertyChange("paddle", null, y);
     }
+
     public void setOpponentPaddlePosition(int y){
         opponentPaddleY = y;
-    }
-
-    public void addChat(String sender, String message){
-        String msgFormat = sender + ": " + message;
-        chats.add(msgFormat);
-        firePropertyChange("chatHist", null, msgFormat);
     }
 
     public void incrementOpponentScore() {
@@ -115,12 +94,6 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public void setUserScore(int score){
         int oldScore = this.userScore;
         userScore = score;
-        firePropertyChange("userScore", oldScore, userScore);
-    }
-
-    public void incrementUserScore() {
-        int oldScore = this.userScore;
-        userScore++;
         firePropertyChange("userScore", oldScore, userScore);
     }
 
@@ -140,7 +113,6 @@ public class T4ABlackboard extends PropertyChangeSupport {
     public void receiveChat(String message){
         chats.add(message);
         firePropertyChange("chatHist", null, message);
-
     }
 
 }

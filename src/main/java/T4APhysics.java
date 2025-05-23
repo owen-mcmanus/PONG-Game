@@ -18,8 +18,7 @@ public class T4APhysics {
     }
 
     public void updateBall() {
-        bb.setBallX(bb.getBallX() + bb.getBallDX());
-        bb.setBallY(bb.getBallY() + bb.getBallDY());
+        bb.setBallPosition(bb.getBallX() + bb.getBallDX(), bb.getBallY() + bb.getBallDY());
 
         if (bb.getBallY() <= 0 || bb.getBallY() >= bb.FIELD_HEIGHT) {
             bb.setBallDY(-bb.getBallDY());
