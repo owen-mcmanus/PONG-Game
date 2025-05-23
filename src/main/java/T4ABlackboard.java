@@ -136,8 +136,11 @@ public class T4ABlackboard extends PropertyChangeSupport {
         chats.add(message);
         firePropertyChange("chatSent", null, message);
     }
-    public void receiveChatMessage(String message) {
+
+    public void receiveChat(String message){
         chats.add(message);
-        firePropertyChange("chatSent",null,message);
+        firePropertyChange("chatHist", null, message);
+
     }
+
 }

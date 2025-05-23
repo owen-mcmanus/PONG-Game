@@ -58,7 +58,7 @@ public class T4AChat extends JPanel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-            if ("chatSent".equals(evt.getPropertyName())){
+            if ("chatSent".equals(evt.getPropertyName()) || "chatHist".equals(evt.getPropertyName())){
                 String newMessage = (String) evt.getNewValue();
                 SwingUtilities.invokeLater(() -> {
                     chat.append(newMessage + "\n");

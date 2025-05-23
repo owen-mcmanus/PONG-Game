@@ -157,7 +157,11 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
         public void run() {
             try {
                 T4ABlackboard repository = T4ABlackboard.getInstance();
-                String content = String.join("/n", repository.getChats());
+                //String content = String.join("\n", repository.getChats());
+                List <String> chats = repository.getChats();
+                if (chats.isEmpty()) return;
+
+                String content = chats.get(chats.size() -1);
 
                 MqttMessage mqttMessage = new MqttMessage(content.getBytes());
                 mqttMessage.setQos(2);
@@ -213,7 +217,7 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
         if(topic.startsWith(TOPIC_CHAT)){
             String chatMessage = new String(mqttMessage.getPayload());
             blackboard.addChat(clientID, chatMessage);
-            blackboard.receiveChatMessage(chatMessage);
+            blackboard.receiveChat(chatMessage);
         }
     }
 
