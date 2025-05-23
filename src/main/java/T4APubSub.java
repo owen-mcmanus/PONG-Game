@@ -215,7 +215,7 @@ public class T4APubSub implements MqttCallback, PropertyChangeListener {
         }
 
         if(topic.startsWith(TOPIC_CHAT)){
-            String chatMessage = new String(mqttMessage.getPayload());
+            String chatMessage = clientID + ": " + new String(mqttMessage.getPayload());
             blackboard.receiveChat(chatMessage);
         }
     }
